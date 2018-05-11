@@ -1,8 +1,8 @@
 ---
 title: MySQL数据类型:char与varchar类型的区别
 date: 2017-06-16 11:49:18
-tags: MySQL
-categories:  转载
+tags: 转载
+categories: MySQL
 ---
 
 在建立数据库表结构的时候，为了给一个`String类型`的数据定义一个数据库的数据库类型，一般参考的都是`char`或者``varchar``，这两种选择有时候让人很纠结，今天想总结一下它们两者的区别，明确一下选择它们的理由。
