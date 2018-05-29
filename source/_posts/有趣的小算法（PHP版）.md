@@ -1,0 +1,92 @@
+---
+title: 有趣的小算法（PHP版）
+date: 2018-05-28 17:59:23
+tags: 原创
+categories: PHP
+---
+
+本文主要记录一些在工作、生活中遇到的有趣的算法，旨在用简单的代码给出过程和答案（基于目前编程水平的理解），不定期更新。
+
+<!--more-->
+
+### 打印函数封装
+
+为打印数据方便，简单自定义一个打印函数。
+
+```php
+/**
+ * format and output array,string, supporting objects
+ *
+ * @param   mixed   $print
+ * @param   string  $show
+ * @param   bool    $need
+ */
+function pp($print,$show = 'pp',$need = false){
+
+    echo '<div style="border: 1px solid bisque;border-bottom-color:red;border-right-color:red;color:green;background-color: bisque;"><pre>';
+    if($need && is_object($print)){
+        $print = json_decode($print);
+    }
+    if($show === 'pp'){
+        print_r($print);
+    }
+    if($show === 'var'){
+        var_dump($print);
+    }
+    echo '</pre></div>';
+    
+}
+```
+
+
+### “约瑟夫手环”
+
+#### 故事背景
+
+一群人排成一圈，按1,2,…,30依次编号。然后从第1个开始数，数到第7个把他踢出圈，从他后面再开始数，再数到第7个，在把他踢出去，如此不停的进行下去，直到最后个剩下一个人为止，求出最后剩下的那个人是谁。
+
+
+#### 代码
+
+```php
+$arr = range(1,30);
+$num = 0;
+while(count($arr) !== 1){
+    foreach($arr as $k => $v){
+        $num++;
+        if($num % 7 === 0){
+            unset($arr[$k]);
+            $num = 0;
+        }
+    }
+}
+
+pp($arr);
+```
+
+#### 思路说明
+
+1. 解题关键点是不能被编号为1到30的人所迷惑，最直接的办法就是如上：设置一个变量，让他从零自增，自增到7再重新赋值为0，每次这个变量的值为7的时候，便把数组中循环了7次时对应的键删掉，核心逻辑就这么多；
+2. `unset($arr[$k]);`不能替换成`unset($v)`，`unset($v)`这只是把$v这个数字删除掉，但并没有把数组中这个值对应的键删掉。 
+
+#### 封装
+
+```php
+function theLastOne($peopleCount,$remove){
+    $arr = range(1,$peopleCount);
+    $num = 0;
+    while(count($arr) !== 1){
+        foreach($arr as $k => $v){
+            $num++;
+            if($num % $remove === 0){
+                unset($arr[$k]);
+                $num = 0;
+            }
+        }
+    }
+    return $arr;
+}
+
+pp(theLastOne(30,7));
+```
+
