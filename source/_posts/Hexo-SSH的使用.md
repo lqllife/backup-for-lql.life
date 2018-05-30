@@ -53,7 +53,7 @@ Enter same passphrase again:<再次输入加密串>
 
 *   1、打开本地 `C:\Documents and Settings\Administrator\.ssh\id_rsa.pub` 文件。此文件里面内容为刚才生成人密钥。如果看不到这个文件，需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。
 
-*   2、登陆 `github` 系统。点击右上角的 `Account Settings`--->`SSH Public key`s ---> `add another public keys`
+*   2、登陆 `github` 系统。点击右上角的 `Account Settings`--->`SSH Public keys` ---> `add another public keys`
 
 *   3、把本地生成的密钥复制到里面（key文本框中）， 点击 `add key` 就ok了
 
