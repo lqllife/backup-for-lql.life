@@ -90,3 +90,72 @@ function theLastOne($peopleCount,$remove){
 pp(theLastOne(30,7));
 ```
 
+
+### 关于分钱的问题
+
+#### 问题描述
+将10000块钱分成5份，且每一份之间的相差的值$d不一样，并且相差$d得大于100。
+
+#### 代码及调用
+```php
+// 判断数组内是否有差值相等
+function check_diff($arr){
+    if(empty($arr)){
+        return false;
+    }
+    
+    $arr = array_map('intval',$arr);
+    sort($arr);
+    
+    $count    = count($arr);
+    $diff_arr = array();
+    for($i = $count - 1;$i >= 0;$i--){
+        for($j = 0;$j < $count;$j++){
+            if($arr[$i] <= $arr[$j]){
+                continue 2;
+            }
+            $diff_arr[] = $arr[$i] - $arr[$j];
+        }
+    }
+    
+    return count($diff_arr) === count(array_unique($diff_arr));
+}
+
+// 主要处理逻辑
+function process($sum = 10000,$diff = 100,$count = 5){
+    
+    $return = array();
+    $i      = 1;
+    while($i < $count){
+        // 随机数不符合要求时的结果初始化
+        if(isset($return[$i]) || isset($return[$i + 1])){
+            unset($return[$i],$return[$i + 1]);
+        }
+        $remain_sum   = $sum - array_sum($return);      // 剩余数
+        $remain_count = ($count - count($return));     // 剩余需要随机的个数
+        $min_diff     = $remain_count * ($remain_count - 1) * (2 * ($remain_count - 1) + 4) / 12 + ($remain_count * ($remain_count - 1) / 2) * $diff;// 高斯求最小差值和，分两部分：S = n(n+1)(2n+4)/12 + $diff * ((n-1)(n-2)/2)
+        $min          = $i === 1 ? 1 : $return[$i - 1] + $diff + 1; // 随机范围的最小值
+        mt_srand((double)microtime() * 1000000);// 在范围内获取随机数
+        $rand_max   = (int)(($remain_sum - $min_diff) / $remain_count); // 随机范围的最大值
+        $min        = random_int($min,$rand_max);   // 产生随机数
+        $return[$i] = $min;     // 放入返回的数组
+        if($i === $count - 1){
+            $return[$i + 1] = $remain_sum - $min;   // 最后一个随机数直接取总数减去前面的随机数
+        }
+        if(check_diff($return) === false){
+            $i--;
+            continue;
+        }
+        $i++;
+    }
+    
+    return $return;
+}
+
+pp(process());
+```
+
+#### 思路说明
+[问题链接](https://segmentfault.com/q/1010000015064381)
+
+<div class="text-right" style="font-size:12px;color:gray">*更新时间：2018-05-31 15:30*</div>
