@@ -13,6 +13,8 @@ categories: git
 2. 删除远程`laravel54`分支上的所有文件；
 3. 将新项目的文件推送到`laravel54`上。
 
+文章中的代码没有高亮化，看着可能不太舒服，其他平台地址：[segmentfault](https://segmentfault.com/a/1190000015430066) [简书](https://www.jianshu.com/p/922590337264)
+
 <!--more-->
 
 ### 流程
@@ -278,14 +280,5 @@ To xxxxxxxxxxxxxxxxxxxxx.git
 
     ```
     
-3. 本地master分支向远程master分支推送
-    
-    ```git
-    沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (master)
-    $ git push origin laravel54
-    Everything up-to-date
-
-    //因为刚才创建的a.txt在laravel54分支上，所以master分支啥也没有。
-    ```
     
 #### 理论上可以实现无限平行分支
