@@ -322,3 +322,42 @@ function carstart_send_order($ip,$port,$card,$devid,$pwd,$cmd){
     return $file_contents;
 }
 ```
+
+### 编码类函数
+
+#### 检测字符编码类型
+
+```php
+function codeType($str){
+    return mb_detect_encoding($str,array("ASCII",'UTF-8',"GB2312","GBK",'BIG5'));
+}
+```
+
+#### 编码转换
+
+```php
+//gb2312转utf8
+function gbkToUtf8($str){
+    return iconv("GB2312","UTF-8",$str);
+}
+
+//utf8转gb2312
+function utf8ToGbk($str){
+    return iconv("UTF-8","GB2312",$str);
+}
+
+//mb_convert_encoding转编码
+function mbGbkToUtf8($str,$turn = 1){
+    switch($turn){
+        case 0:
+            $newStr = mb_convert_encoding($str,"UTF-8","GB2312");
+            break;
+        case 1:
+            $newStr = mb_convert_encoding($str,"GB2312","UTF-8");
+            break;
+        default:
+            $newStr = '参数错误';
+    }
+    return $newStr;
+}
+```
