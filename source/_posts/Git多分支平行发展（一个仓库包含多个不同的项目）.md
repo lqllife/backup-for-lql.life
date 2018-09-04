@@ -87,7 +87,7 @@ $  git pull origin laravel54 --allow-unrelated-histories
 From xxxxxxxxxxxxxxxxxxxxx
  * branch            laravel54 -> FETCH_HEAD
 Merge made by the 'recursive' strategy.
-......
+...
 ```
 
 这步操作的时候，会有merge的commit说明，简单写下，这个只是merge的说明，并不会真正和mater合并。
@@ -120,7 +120,7 @@ $ git add .
 $ git commit -m'delete all files'
 [laravel54 d8bf12d] delete all files
 215 files changed, 32019 deletions(-)
-......
+...
 
 沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)
 $ git push origin laravel54
@@ -146,7 +146,7 @@ To xxxxxxxxxxxxxxxxxxxxx.git
 $ git add .
 warning: LF will be replaced by CRLF in .env.example.
 The file will have its original line endings in your working directory.
-.......
+...
 
 沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)
 $ git commit -m'laravel54 push'
@@ -154,7 +154,7 @@ $ git commit -m'laravel54 push'
  113 files changed, 11583 insertions(+)
  create mode 100644 .env.example
  create mode 100644 .gitattributes
- .......
+ ...
 
 沐@ MINGW64 /d/PHP/xampp/htdocs/apple/laravel5.4 (laravel54)
 $ git push origin laravel54
@@ -281,4 +281,4 @@ To xxxxxxxxxxxxxxxxxxxxx.git
     ```
     
     
-#### 理论上可以实现无限平行分支
+#### 理论上可以实现无限平行分支，同样若一个项目中有版本（稳定版、开发版等），也可以跟据此思路扩展。

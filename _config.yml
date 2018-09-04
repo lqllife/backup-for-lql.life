@@ -70,4 +70,4 @@ theme: next
 deploy:
   type: git
   repo: git@github.com:Mine-MuYan/Mine-MuYan.github.io.git
-  branch: master
+  branch: https

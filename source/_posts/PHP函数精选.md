@@ -361,3 +361,19 @@ function mbGbkToUtf8($str,$turn = 1){
     return $newStr;
 }
 ```
+
+### 判断一个数组是否全部为空
+
+```php
+
+$arr = [
+    ['a' => 1],
+    [],
+    [],
+    ['b' => 2],
+    [],
+];
+$felter = array_filter($arr);
+echo count($felter) === 0 ? '全部为空' : '部分为空';
+
+```
