@@ -80,3 +80,10 @@ deploy:
   type: git
   repo: git@github.com:Mine-MuYan/Mine-MuYan.github.io.git
   branch: https
+
+# 本地搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
