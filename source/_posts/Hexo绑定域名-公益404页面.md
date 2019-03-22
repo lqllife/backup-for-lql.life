@@ -93,3 +93,9 @@ DNSpod解析域名这里使用DNSpod来进行解析, 原因：很快，免费。
 
 2.本地 `http://localhost:4000` 不生效。
 
+
+
+### 文档参考
+
+1. [JasonYu的博客](https://www.yuhuizhen.com/2018/08/25/hexo-learn.html)	**域名绑定**
+2. [遇见西门](https://www.simon96.online/2018/10/12/hexo-tutorial/)		**插件和主题优化**
