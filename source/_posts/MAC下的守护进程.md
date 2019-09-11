@@ -56,4 +56,4 @@ launchctl start ~/Library/LaunchAgents/com.test.plist
 # 检测配置文件是否有错误，无报错的话，会输出OK
 plutil -lint ~/Library/LaunchAgents/com.test.plist
 ```
-3. 可能需要在 设置 - 安全与隐私 - 辅助功能里面将脚本文件添加进去。
+3. 可能需要在 设置 - 安全与隐私 - 辅助功能里面将shell脚本文件添加进去，如果提示无权限需要执行 `chmod 777 BetterTouchTool.sh`。
