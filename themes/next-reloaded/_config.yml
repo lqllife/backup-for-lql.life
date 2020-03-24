@@ -383,7 +383,7 @@ custom_logo:
 # Code Highlight theme
 # Available values: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night bright
+highlight_theme: normal
 
 # Enable "cheers" for archive page.
 cheers_enabled: true
@@ -876,7 +876,7 @@ canvas_nest:
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
 # three_waves
-three_waves: true
+three_waves: false
 # canvas_lines
 canvas_lines: false
 # canvas_sphere

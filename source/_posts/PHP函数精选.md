@@ -377,3 +377,90 @@ $felter = array_filter($arr);
 echo count($felter) === 0 ? '全部为空' : '部分为空';
 
 ```
+
+### 使用Carbon(laravel)计算两个时间相隔的年月日时分秒
+
+```php
+
+/**
+ * 使用Carbon(laravel)计算两个时间之差
+ * @param  string  $start   开始时间
+ * @param  string  $end     结束时间
+ * @param  int       $return  返回类型
+ * @return array|string
+ */
+function carbon_time_diff($start, $end, $return = 1)
+{
+    $carbon  = new Illuminate\Support\Carbon($start);
+    $carbon  = $carbon->diff(new Illuminate\Support\Carbon($end));
+    $years   = $carbon->y;
+    $months  = $carbon->m;
+    $days    = $carbon->d;
+    $hours   = $carbon->h;
+    $mins    = $carbon->i;
+    $seconds = $carbon->s;
+    
+    switch ($return) {
+        case 1:
+            return $years . '年' . $months . '月' . $days . '天' . $hours . '小时' . $mins . '分钟' . $seconds . '秒';
+            break;
+        case 2:
+            $str = '';
+            !empty($years) && $str .= $years . '年';
+            !empty($months) && $str .= $months . '月';
+            !empty($days) && $str .= $days . '天';
+            !empty($hours) && $str .= $hours . '小时';
+            !empty($mins) && $str .= $mins . '分钟';
+            !empty($seconds) && $str .= $seconds . '秒';
+            return $str;
+            break;
+        default:
+            return ['years' => $years, 'months' => $months, 'days' => $days, 'hours' => $hours, 'mins' => $mins, 'seconds' => $seconds];
+            break;
+    }
+}
+
+```
+
+### 使用DateTime计算两个时间相隔的年月日时分秒
+
+```php
+/**
+ * 计算两个时间之差
+ * @param  string  $start   开始时间
+ * @param  string  $end     结束时间
+ * @param  int     $return  返回类型
+ * @return array|string
+ * @throws Exception
+ */
+function diff_date($start, $end, $return = 1)
+{
+    $datetime1 = new \DateTime($start);
+    $datetime2 = new \DateTime($end);
+    $interval  = $datetime1->diff($datetime2);
+    $years     = $interval->format('%Y');
+    $months    = $interval->format('%m');
+    $days      = $interval->format('%d');
+    $hours     = $interval->format('%H');
+    $mins      = $interval->format('%i');
+    $seconds   = $interval->format('%s');
+    switch ($return) {
+        case 1:
+            return $years . '年' . $months . '月' . $days . '天' . $hours . '小时' . $mins . '分钟' . $seconds . '秒';
+            break;
+        case 2:
+            $str = '';
+            !empty($years) && $years !== '00' && $str .= $years . '年';
+            !empty($months) && $months !== '00' && $str .= $months . '月';
+            !empty($days) && $days !== '00' && $str .= $days . '天';
+            !empty($hours) && $hours !== '00' && $str .= $hours . '小时';
+            !empty($mins) && $mins !== '00' && $str .= $mins . '分钟';
+            !empty($seconds) && $seconds !== '00' && $str .= $seconds . '秒';
+            return $str;
+            break;
+        default:
+            return ['years' => $years, 'months' => $months, 'days' => $days, 'hours' => $hours, 'mins' => $mins, 'seconds' => $seconds];
+            break;
+    }
+}
+```
