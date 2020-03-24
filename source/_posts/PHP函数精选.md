@@ -378,7 +378,9 @@ echo count($felter) === 0 ? '全部为空' : '部分为空';
 
 ```
 
-### 使用Carbon(laravel)计算两个时间相隔的年月日时分秒
+### 两个时间相隔的年月日时分秒
+
+#### 使用Carbon(laravel)
 
 ```php
 
@@ -422,7 +424,7 @@ function carbon_time_diff($start, $end, $return = 1)
 
 ```
 
-### 使用DateTime计算两个时间相隔的年月日时分秒
+#### 使用系统函数 DateTime
 
 ```php
 /**
@@ -464,3 +466,68 @@ function diff_date($start, $end, $return = 1)
     }
 }
 ```
+
+### 列出时间段内所有的天数
+
+#### 使用系统函数 DatePeriod
+
+```php
+/**
+ * 使用系统函数 DatePeriod 列出时间段内所有的天数
+ * @param  string  $start   开始的那一天
+ * @param  string  $end     结束的那一天
+ * @return array
+ */
+function date_period($start, $end)
+{
+    $preriod = new \DatePeriod(new \DateTime($start), new \DateInterval('P1D'), new \DateTime($end));
+    $time    = [];
+    foreach ($preriod as $key => $value) {
+        $time[] = $value->format('Y-m-d');
+    }
+    return $time;
+}
+```
+
+#### 使用系统函数 \Carbon\CarbonPeriod(laravel)
+
+```php
+/**
+ * 使用系统函数 \Carbon\CarbonPeriod 列出时间段内所有的天数
+ * @param  string  $start   开始的那一天
+ * @param  string  $end     结束的那一天
+ * @return array
+ */
+function date_period($start, $end)
+{
+    $period = new \Carbon\CarbonPeriod($start, '1 day', $end);
+    $time   = [];
+    foreach ($period as $key => $value) {
+     $time[] = $value->format('Y-m-d');
+    }
+    
+    return $time;
+}
+```
+
+
+#### 使用while循环
+
+```php
+/**
+ * 使用系统函数 while循环 列出时间段内所有的天数
+ * @param  string  $start   开始的那一天
+ * @param  string  $end     结束的那一天
+ * @return array
+ */
+function date_period($start, $end)
+{
+   $time = [];
+   while ($start <= $end) {
+       $time[] = $start;
+       $start  = date('Y-m-d', strtotime('+1 day', strtotime($start)));
+   }
+   return $time;
+}
+```
+
